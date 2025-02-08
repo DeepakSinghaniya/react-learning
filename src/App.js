@@ -1,17 +1,16 @@
 import React, { lazy, Suspense } from "react";
-import { Home } from "./pages/Home";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
-// import { About } from "./pages/About";
-// import { Contact } from "./pages/Contact";
 
-const About = lazy(() => {
-  return import("./pages/About");
+const Login = lazy(() => {
+  return import("./pages/Login");
 });
-const Contact = lazy(() => {
-  return import("./pages/Contact");
+const Signup = lazy(() => {
+  return import("./pages/Signup");
 });
-
+const Shop = lazy(() => {
+  return import("./pages/Shop");
+});
 const App = () => {
   return (
     <div className="App">
@@ -19,22 +18,22 @@ const App = () => {
         <Header />
         <Routes>
           <Route
-            path="/contact"
+            path="/"
             element={
               <Suspense fallback={<p>Loading...</p>}>
-                <Contact />
+                <Shop />
               </Suspense>
             }
           />
           <Route
-            path="/about"
+            path="/login"
             element={
               <Suspense fallback={<p>Loading...</p>}>
-                <About />
+                <Login />
               </Suspense>
             }
           />
-          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </HashRouter>
     </div>
