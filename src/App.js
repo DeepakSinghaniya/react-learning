@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Login = lazy(() => {
   return import("./pages/Login");
@@ -10,6 +11,9 @@ const Signup = lazy(() => {
 });
 const Shop = lazy(() => {
   return import("./pages/Shop");
+});
+const Profile = lazy(() => {
+  return import("./pages/Profile");
 });
 const App = () => {
   return (
@@ -21,7 +25,19 @@ const App = () => {
             path="/"
             element={
               <Suspense fallback={<p>Loading...</p>}>
-                <Shop />
+                <ProtectedRoute>
+                  <Shop />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
               </Suspense>
             }
           />
