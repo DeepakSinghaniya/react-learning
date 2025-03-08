@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import http from "../http";
+import Welcome from "../components/Welcome";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({});
@@ -16,6 +17,7 @@ const Profile = () => {
   }, []);
   return (
     <div>
+      <Welcome name={profileData.name} email={profileData.email} />
       <p>id: {profileData.id}</p>
       <p>name: {profileData.name}</p>
       <p>email: {profileData.email}</p>

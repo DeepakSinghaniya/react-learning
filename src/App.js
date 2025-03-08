@@ -15,6 +15,9 @@ const Shop = lazy(() => {
 const Profile = lazy(() => {
   return import("./pages/Profile");
 });
+const ProductDetail = lazy(() => {
+  return import("./pages/ProductDetails");
+});
 const App = () => {
   return (
     <div className="App">
@@ -22,11 +25,11 @@ const App = () => {
         <Header />
         <Routes>
           <Route
-            path="/"
+            path="/product/:id"
             element={
               <Suspense fallback={<p>Loading...</p>}>
                 <ProtectedRoute>
-                  <Shop />
+                  <ProductDetail />
                 </ProtectedRoute>
               </Suspense>
             }
@@ -50,6 +53,16 @@ const App = () => {
             }
           />
           <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <ProtectedRoute>
+                  <Shop />
+                </ProtectedRoute>
+              </Suspense>
+            }
+          />
         </Routes>
       </HashRouter>
     </div>
